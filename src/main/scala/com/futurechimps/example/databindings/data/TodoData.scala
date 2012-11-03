@@ -8,7 +8,7 @@ object TodoData {
    * Some fake flowers data so we can simulate retrievals.
    */
   var all = List(
-      Todo(1, "Scrub the rug"),
+      Todo(1, "Shampoo the cat"),
       Todo(2, "Wax the floor"),
-      Todo(3, "Shampoo the cat"))
+      Todo(3, "Scrub the rug"))
 }

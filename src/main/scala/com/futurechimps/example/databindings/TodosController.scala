@@ -22,10 +22,8 @@ import commands._
 class TodosController extends ScalatraServlet with ScalateSupport 
   with CommandSupport with JacksonJsonParsing with JacksonJsonSupport with JValueResult {
 
-  // Sets up automatic case class to JSON output serialization, required by
-  // the JValueResult trait.
+  // Set up automatic case class to JSON output serialization.
   protected implicit val jsonFormats: Formats = DefaultFormats
-
 
   // Before every action runs, set the content type to be in JSON format.
   before() {
@@ -44,13 +42,13 @@ class TodosController extends ScalatraServlet with ScalateSupport
   }
 
   post("/todos") {
-    val cmd = commandOrElse(new CreateTodoCommand(params("name")))
-    if(cmd.isValid) {
-      val todo = cmd.execute
-      redirect("todos/" + todo.id)
-    } else {
+    // val cmd = commandOrElse(new CreateTodoCommand(params("name")))
+    // if(cmd.isValid) {
+    //   val todo = cmd.execute
+    //   redirect("todos/" + todo.id)
+    // } else {
 
-    }
+    // }
   }
 
   get("/todos/:id") {
