@@ -26,11 +26,13 @@ object TodoData extends Logging with CommandHandler {
   /**
    * Checks what kind of command is coming in the door and handles whatever
    * work the Command should do when executed.
+   * 
+   * By the time you get into the cases, you can start handling the work
+   * you want the command to do. When it gets to that point, it's already 
+   * successfully validated.
    */
   def handle: Handler  = {
     case c: CreateTodoCommand => 
-      // handle the command, when it gets here it's been validated etc.
-      // so most likely you want to persist the fields of the command somehow
       add(Todo(4, ~c.name.value))
   }
   
@@ -38,14 +40,16 @@ object TodoData extends Logging with CommandHandler {
   /**
    * Adds a new Todo object to the existing list of todos.
    * 
-   * If the validation doesn't apply, the errorFail method will be called, 
-   * and the lines inside the allCatch block won't run.
-   *  
    * The method returns a ModelValidation[Todo], which is carried around in the
    * todo.successNel. Think of "successNel" as being like a two part variable 
    * name. The result is either 
    * Success[Model] or Failure[NonEmptyList[ValdationError]]. So you're getting
-   * back either "success" OR a non-empty list ("Nel").
+   * back either "success" OR a non-empty list ("Nel"). This type signature is
+   * in turn dictated by the return value needed by the `handle` method, above.
+   * 
+   * If any exceptions happen as we're doing work here, the errorFail method 
+   * will be called, due to the allCatch.withApply (which is equivalent to a
+   * try {} catch {} block. 
    */
   def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
