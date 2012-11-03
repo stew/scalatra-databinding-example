@@ -40,7 +40,8 @@ object TodoData extends Logging with CommandHandler {
    * The method returns a ModelValidation[Todo], which is carried around in the
    * todo.successNel. Think of "successNel" as being like a two part variable 
    * name. The result is either 
-   * Success[Model] or Failure[NonEmptyList[ValdationError]]. 
+   * Success[Model] or Failure[NonEmptyList[ValdationError]]. So you're getting
+   * back either "success" OR a non-empty list ("Nel").
    */
   def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
