@@ -22,7 +22,7 @@ object TodoData extends Logging with CommandHandler {
    * Some fake todos data so we can simulate retrievals.
    */
   var all = List(
-      Todo(1, "Shampoo the cat"),
+      Todo(1, "Shampoo the cat", true),
       Todo(2, "Wax the floor"),
       Todo(3, "Scrub the rug"))
 
