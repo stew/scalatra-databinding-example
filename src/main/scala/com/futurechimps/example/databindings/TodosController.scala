@@ -1,6 +1,7 @@
 package com.futurechimps.example.databindings
 
 import org.scalatra._
+import scalate.ScalateSupport
 
 // Json handling
 import json._
@@ -8,7 +9,6 @@ import org.json4s.{DefaultFormats, Formats}
 
 // Command support
 import databinding._
-import scalate.ScalateSupport
 
 // Our models
 import models._
