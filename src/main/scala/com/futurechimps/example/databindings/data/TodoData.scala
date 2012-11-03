@@ -40,12 +40,7 @@ object TodoData extends Logging with CommandHandler {
    */
   def handle: Handler  = {
     case c: CreateTodoCommand => 
-      // handle the command, when it gets here it's been validated etc.
-      // so most likely you want to persist the fields of the command somehow
       add(newTodo(~c.name.value))
-      // I want to do something like TodoData.add(todo) here, but I can't
-      // because the type system wants this case to spit out a
-      // com.futurechimps.example.databindings.commands.models.package.ModelValidation[?>: Nothing <: Any]
   }
   
   private def newTodo(name: String) = Todo(idCounter.incrementAndGet, name)
