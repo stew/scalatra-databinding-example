@@ -1,8 +1,8 @@
-package com.futurechimps.example.databindings.data
+package org.scalatra.example.databinding.data
 
-import com.futurechimps.example.databindings.models._
-import com.futurechimps.example.databindings.commands._
-import com.futurechimps.example.databindings.utils.Logging
+import org.scalatra.example.databinding.models._
+import org.scalatra.example.databinding.commands._
+import org.scalatra.example.databinding.utils.Logging
 import scalaz._
 import Scalaz._
 import scala.util.control.Exception._

@@ -1,4 +1,4 @@
-import com.futurechimps.example.databindings._
+import org.scalatra.example.databinding._
 import org.scalatra._
 import javax.servlet.ServletContext
 

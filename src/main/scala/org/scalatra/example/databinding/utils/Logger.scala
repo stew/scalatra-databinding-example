@@ -1,4 +1,4 @@
-package com.futurechimps.example.databindings
+package org.scalatra.example.databinding
 package utils
 
 import grizzled.slf4j.Logger

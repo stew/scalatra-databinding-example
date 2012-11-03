@@ -1,7 +1,7 @@
-package com.futurechimps.example.databindings.commands
+package org.scalatra.example.databinding.commands
 
 import org.scalatra.databinding._
-import com.futurechimps.example.databindings.models._
+import org.scalatra.example.databinding.models._
 
 /** A command to validate and create Todo objects. */
 class CreateTodoCommand extends TodosCommand[Todo] { 

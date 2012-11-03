@@ -1,4 +1,4 @@
-<% import com.futurechimps.example.databindings.models.Todo %>
+<% import org.scalatra.example.databinding.models.Todo %>
 <%@ val todos: List[Todo] %>
 <%@ val remaining: Integer %>
 

@@ -1,4 +1,4 @@
-package com.futurechimps.example.databindings
+package org.scalatra.example.databinding
 
 import org.scalatra.test.specs2._
 
