@@ -28,13 +28,19 @@ object TodoData extends Logging with CommandHandler {
       // handle the command, when it gets here it's been validated etc.
       // so most likely you want to persist the fields of the command somehow
       add(Todo(4, ~c.name.value))
-      // I want to do something like TodoData.add(todo) here, but I can't
-      // because the type system wants this case to spit out a
-      // com.futurechimps.example.databindings.commands.models.package.ModelValidation[?>: Nothing <: Any]
   }
   
   
-  // Hansel and Gretel can't find their way home. Any breadcrumbs?
+  /**
+   * Adds a new Todo object to the existing list of todos.
+   * 
+   * If the validation doesn't apply, the errorFail method will be called, 
+   * and the lines inside the allCatch block won't run.
+   *  
+   * The method returns a ModelValidation[Todo], which is carried around in the
+   * todo.successNel - todo.successNel means that no validation errors exist
+   * on the todo object.
+   */
   def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
       all ::= todo
