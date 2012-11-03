@@ -26,5 +26,14 @@ object TodoData extends Logging with CommandHandler {
       // handle the command, when it gets here it's been validated etc.
       // so most likely you want to persist the fields of the command somehow
       Todo(4, ~c.name.value).successNel
+      // I want to do something like TodoData.add(todo) here, but I can't
+      // because the type system wants this case to spit out a
+      // com.futurechimps.example.databindings.commands.models.package.ModelValidation[?>: Nothing <: Any]
+  }
+  
+  
+  // Hansel and Gretel can't find their way home. Any breadcrumbs?
+  def add(todo: Todo) = {
+    
   }
 }
