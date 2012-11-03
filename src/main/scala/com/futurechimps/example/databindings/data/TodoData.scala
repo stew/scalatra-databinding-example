@@ -5,6 +5,8 @@ import com.futurechimps.example.databindings.commands._
 import com.futurechimps.example.databindings.utils.Logging
 import scalaz._
 import Scalaz._
+import scala.util.control.Exception._
+import org.scalatra.validation._
 
 /* 
  * CommandHandler, in a larger app, might be in a service layer. 
@@ -34,6 +36,11 @@ object TodoData extends Logging with CommandHandler {
   
   // Hansel and Gretel can't find their way home. Any breadcrumbs?
   def add(todo: Todo): ModelValidation[Todo] = {
-    todo.successNel
+    allCatch.withApply(errorFail) {
+      all ::= todo
+      todo.successNel
+    }
   }
+
+  def errorFail(ex: Throwable) = ValidationError(ex.getMessage, UnknownError).failNel
 }
