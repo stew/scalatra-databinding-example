@@ -7,6 +7,7 @@ import scalaz._
 import Scalaz._
 import scala.util.control.Exception._
 import org.scalatra.validation._
+import java.util.concurrent.atomic.AtomicInteger
 
 /* 
  * CommandHandler, in a larger app, might be in a service layer. 
@@ -14,6 +15,8 @@ import org.scalatra.validation._
  * data layer, here:
  */
 object TodoData extends Logging with CommandHandler {
+
+  val idCounter = new AtomicInteger(3)
 
   /**
    * Some fake todos data so we can simulate retrievals.
@@ -33,9 +36,15 @@ object TodoData extends Logging with CommandHandler {
    */
   def handle: Handler  = {
     case c: CreateTodoCommand => 
-      add(Todo(4, ~c.name.value))
+      // handle the command, when it gets here it's been validated etc.
+      // so most likely you want to persist the fields of the command somehow
+      add(newTodo(~c.name.value))
+      // I want to do something like TodoData.add(todo) here, but I can't
+      // because the type system wants this case to spit out a
+      // com.futurechimps.example.databindings.commands.models.package.ModelValidation[?>: Nothing <: Any]
   }
   
+  private def newTodo(name: String) = Todo(idCounter.incrementAndGet, name)
   
   /**
    * Adds a new Todo object to the existing list of todos.
@@ -51,7 +60,7 @@ object TodoData extends Logging with CommandHandler {
    * will be called, due to the allCatch.withApply (which is equivalent to a
    * try {} catch {} block. 
    */
-  def add(todo: Todo): ModelValidation[Todo] = {
+  private def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
       all ::= todo
       todo.successNel
