@@ -23,6 +23,10 @@ object TodoData extends Logging with CommandHandler {
       Todo(2, "Wax the floor"),
       Todo(3, "Scrub the rug"))
 
+  /**
+   * Checks what kind of command is coming in the door and handles whatever
+   * work the Command should do when executed.
+   */
   def handle: Handler  = {
     case c: CreateTodoCommand => 
       // handle the command, when it gets here it's been validated etc.

@@ -14,6 +14,12 @@ abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyComma
 
 
 trait CommandHandler { self: Logging ⇒
+
+
+  /**
+   * Calls validation using cmd.isValid and executes the command using
+   * the protected handle.lif(cmd) method.
+   */
   def execute[S: Manifest](cmd: TodosCommand[S]): ModelValidation[S] = {
     logger.debug("Executing [%s].\n%s" format (cmd.getClass.getName, cmd))
     if (cmd.isValid) {
@@ -39,5 +45,13 @@ trait CommandHandler { self: Logging ⇒
 
   type Handler = PartialFunction[TodosCommand[_], ModelValidation[_]]
 
+
+  /**
+   * This protected method, when called in a Command subclass, 
+   * should do the actual work that you want done when you call execute().
+   *
+   * This method can be implemented as a protected val if you don't want 
+   * to create a new instance of that partial function every time. 
+   */
   protected def handle: Handler
 }
