@@ -16,7 +16,6 @@ package object models {
   type ModelValidation[T] = Validation[NonEmptyList[ValidationError], T]
 }
 
-// Something's wrong in here...
 trait CommandHandler { self: Logging ⇒
   def execute[S: Manifest](cmd: TodosCommand[S]): ModelValidation[S] = {
     logger.debug("Executing [%s].\n%s" format (cmd.getClass.getName, cmd))
