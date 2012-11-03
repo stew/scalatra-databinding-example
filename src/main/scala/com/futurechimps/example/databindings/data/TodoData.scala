@@ -14,7 +14,7 @@ import Scalaz._
 object TodoData extends Logging with CommandHandler {
 
   /**
-   * Some fake flowers data so we can simulate retrievals.
+   * Some fake todos data so we can simulate retrievals.
    */
   var all = List(
       Todo(1, "Shampoo the cat"),
