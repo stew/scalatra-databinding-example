@@ -10,11 +10,13 @@ import scalaz._
 import Scalaz._
 import org.scalatra.validation.{ ValidationError, UnknownError, NotImplemented }
 
+// A bit of type wizardry to make the compiler happy.
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyCommand
 
 
+// This will probably end up getting pushed down into the framework, as it
+// should be relatively generic.
 trait CommandHandler { self: Logging ⇒
-
 
   /**
    * Calls validation using cmd.isValid and executes the command using
@@ -43,6 +45,7 @@ trait CommandHandler { self: Logging ⇒
     ValidationError("An error occurred while handling: " + cmdName, UnknownError).failNel[R]
   }
 
+  // TODO: it's unclear to me what this partial function is really doing. 
   type Handler = PartialFunction[TodosCommand[_], ModelValidation[_]]
 
 
