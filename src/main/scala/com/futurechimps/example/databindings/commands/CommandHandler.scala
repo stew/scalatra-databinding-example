@@ -18,7 +18,8 @@ abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyComma
 // should be relatively generic.
 trait CommandHandler { self: Logging ⇒
 
-  /**
+  /** Performs validation and executes the command request. 
+   *
    * Calls validation using cmd.isValid and executes the command using
    * the protected handle.lif(cmd) method.
    */
@@ -49,7 +50,8 @@ trait CommandHandler { self: Logging ⇒
   type Handler = PartialFunction[TodosCommand[_], ModelValidation[_]]
 
 
-  /**
+  /** Does the actual work part of the command (as opposed to validation).
+   *
    * This protected method, when called in a Command subclass, 
    * should do the actual work that you want done when you call execute().
    *

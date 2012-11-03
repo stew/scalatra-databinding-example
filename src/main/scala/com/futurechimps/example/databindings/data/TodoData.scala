@@ -9,7 +9,8 @@ import scala.util.control.Exception._
 import org.scalatra.validation._
 import java.util.concurrent.atomic.AtomicInteger
 
-/* 
+/** A fake datastore which keeps Todo objects in RAM.
+ *
  * CommandHandler, in a larger app, might be in a service layer. 
  * Since we've just got a small app, we'll bring it into our fake little
  * data layer, here:
@@ -18,9 +19,7 @@ object TodoData extends Logging with CommandHandler {
 
   val idCounter = new AtomicInteger(3)
 
-  /**
-   * Some fake todos data so we can simulate retrievals.
-   */
+  /** Some fake todos data so we can simulate retrievals. */
   var all = List(
       Todo(1, "Shampoo the cat", true),
       Todo(2, "Wax the floor"),
@@ -30,7 +29,8 @@ object TodoData extends Logging with CommandHandler {
     all.filterNot(_.done == true).length
   }
 
-  /**
+  /** Handles execution of Command requests.
+   *
    * Checks what kind of command is coming in the door and handles whatever
    * work the Command should do when executed.
    * 
@@ -45,8 +45,7 @@ object TodoData extends Logging with CommandHandler {
   
   private def newTodo(name: String) = Todo(idCounter.incrementAndGet, name)
   
-  /**
-   * Adds a new Todo object to the existing list of todos.
+  /** Adds a new Todo object to the existing list of todos.
    * 
    * The method returns a ModelValidation[Todo], which is carried around in the
    * todo.successNel. Think of "successNel" as being like a two part variable 
