@@ -38,8 +38,9 @@ object TodoData extends Logging with CommandHandler {
    * and the lines inside the allCatch block won't run.
    *  
    * The method returns a ModelValidation[Todo], which is carried around in the
-   * todo.successNel - todo.successNel means that no validation errors exist
-   * on the todo object.
+   * todo.successNel. Think of "successNel" as being like a two part variable 
+   * name. The result is either 
+   * Success[Model] or Failure[NonEmptyList[ValdationError]]. 
    */
   def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
