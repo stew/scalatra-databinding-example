@@ -10,12 +10,14 @@ import scalaz._
 import Scalaz._
 import org.scalatra.validation.{ ValidationError, UnknownError, NotImplemented }
 
+abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyCommand
+
 package object models {
   type ModelValidation[T] = Validation[NonEmptyList[ValidationError], T]
 }
 
 trait CommandHandler { self: Logging ⇒
-  def execute[S: Manifest](cmd: ParamsOnlyCommand[S]): ModelValidation[S] = {
+  def execute[S: Manifest](cmd: TodosCommand[S]): ModelValidation[S] = {
     logger.debug("Executing [%s].\n%s" format (cmd.getClass.getName, cmd))
     if (cmd.isValid) {
       val res = (allCatch withApply (serverError(cmd.getClass.getName, _))) {
@@ -38,7 +40,7 @@ trait CommandHandler { self: Logging ⇒
     ValidationError("An error occurred while handling: " + cmdName, UnknownError).failNel[R]
   }
 
-  type Handler = PartialFunction[ParamsOnlyCommand[_], ModelValidation[_]]
+  type Handler = PartialFunction[TodosCommand[_], ModelValidation[_]]
 
   protected def handle: Handler
 }
