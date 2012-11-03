@@ -19,19 +19,22 @@ import data._
 // Commands
 import commands._
 
+// Logger
+import utils._
+
 class TodosController extends ScalatraServlet with ScalateSupport 
   with ParamsOnlyCommandSupport {
 
   get("/") {
     contentType="text/html"
-    ssp("/todos/index")
+    ssp("/todos/index", "todos" -> TodoData.all)
   }
 
   post("/todos") {
     val cmd = command[CreateTodoCommand]
     TodoData.execute(cmd).fold(
       errors => halt(400, errors), // probably better serialize somehow
-      todo => redirect("todos/" + todo.id)
+      todo => redirect("/")
     )
   }
 
