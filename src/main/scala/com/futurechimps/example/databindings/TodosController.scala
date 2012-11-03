@@ -23,13 +23,8 @@ class TodosController extends ScalatraServlet with ScalateSupport
   with ParamsOnlyCommandSupport {
 
   get("/") {
-
-    <html>
-      <body>
-        <h1>Hello, world!</h1>
-        Say <a href="hello-scalate">hello to Scalate</a>.
-      </body>
-    </html>
+    contentType="text/html"
+    ssp("/todos/index")
   }
 
   post("/todos") {
