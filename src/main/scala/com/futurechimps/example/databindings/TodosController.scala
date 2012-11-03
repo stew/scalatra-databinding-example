@@ -27,7 +27,7 @@ class TodosController extends ScalatraServlet with ScalateSupport
 
   get("/") {
     contentType="text/html"
-    ssp("/todos/index", "todos" -> TodoData.all)
+    ssp("/todos/index", "todos" -> TodoData.all, "remaining" -> TodoData.remaining)
   }
 
   post("/todos") {

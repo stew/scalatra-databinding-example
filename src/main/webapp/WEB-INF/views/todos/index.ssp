@@ -1,9 +1,10 @@
 <% import com.futurechimps.example.databindings.models.Todo %>
 <%@ val todos: List[Todo] %>
+<%@ val remaining: Integer %>
 
 <h2>Todo</h2>
 <div ng-controller="TodoCtrl">
-  <span>{{remaining()}} of {{todos.length}} remaining</span>
+  <span><%= remaining %> of <%= todos.length %> remaining</span>
   [ <a href="" ng-click="archive()">archive</a> ]
   <ul class="unstyled">
   #for(todo <- todos)

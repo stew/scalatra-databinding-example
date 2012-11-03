@@ -26,6 +26,10 @@ object TodoData extends Logging with CommandHandler {
       Todo(2, "Wax the floor"),
       Todo(3, "Scrub the rug"))
 
+  def remaining = {
+    all.filterNot(_.done == true).length
+  }
+
   /**
    * Checks what kind of command is coming in the door and handles whatever
    * work the Command should do when executed.
