@@ -12,9 +12,6 @@ import org.scalatra.validation.{ ValidationError, UnknownError, NotImplemented }
 
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyCommand
 
-package object models {
-  type ModelValidation[T] = Validation[NonEmptyList[ValidationError], T]
-}
 
 trait CommandHandler { self: Logging ⇒
   def execute[S: Manifest](cmd: TodosCommand[S]): ModelValidation[S] = {
