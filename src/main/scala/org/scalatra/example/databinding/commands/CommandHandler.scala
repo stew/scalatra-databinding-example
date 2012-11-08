@@ -11,5 +11,5 @@ import Scalaz._
 import org.scalatra.validation.{ ValidationError, UnknownError, NotImplemented }
 
 // A bit of type wizardry to make the compiler happy.
-abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ParamsOnlyCommand
+abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with ParamsOnlyCommand
 
