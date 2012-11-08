@@ -12,9 +12,12 @@ import java.util.concurrent.atomic.AtomicInteger
 
 /** A fake datastore which keeps Todo objects in RAM.
  *
- * CommandHandler, in a larger app, might be in a service layer. 
- * Since we've just got a small app, we'll bring it into our fake little
- * data layer, here:
+ * CommandHandler is a built-in part of Scalatra which gives you a generic
+ * chunk of logic for command execution. You can write your own 
+ * CommandHandler base class if you want to, and this might be quite
+ * useful in a larger application.
+ * 
+ * Logging is just here to satisfy the compiler. 
  */
 object TodoData extends Logging with CommandHandler {
 
