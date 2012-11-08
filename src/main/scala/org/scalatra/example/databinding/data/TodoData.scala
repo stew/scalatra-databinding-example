@@ -7,6 +7,7 @@ import scalaz._
 import Scalaz._
 import scala.util.control.Exception._
 import org.scalatra.validation._
+import org.scalatra.databinding._
 import java.util.concurrent.atomic.AtomicInteger
 
 /** A fake datastore which keeps Todo objects in RAM.
