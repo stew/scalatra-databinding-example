@@ -23,7 +23,7 @@ import commands._
 import utils._
 
 class TodosController extends ScalatraServlet with ScalateSupport 
-  with ParamsOnlyCommandSupport with JacksonJsonParsing with JacksonJsonSupport {
+  with JacksonJsonParsing with JacksonJsonSupport {
 
   protected implicit val jsonFormats: Formats = DefaultFormats
 
