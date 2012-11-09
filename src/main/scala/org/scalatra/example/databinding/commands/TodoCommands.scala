@@ -11,7 +11,7 @@ import org.scalatra.json._
 import org.json4s.{DefaultFormats, Formats}
 
 /** Set up an abstract class to inherit from, so we don't need to keep on
- *  repeating the `extends ModelCommand[T] with ParamsOnlyCommand` in 
+ *  repeating the `extends ModelCommand[T]` in 
  *  every command we make.
  */
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with JsonCommand
