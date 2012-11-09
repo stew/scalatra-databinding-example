@@ -71,5 +71,6 @@ object TodoData extends Logging with CommandHandler {
     }
   }
 
+  /** Throw a validation error if something explodes when adding a Todo **/
   def errorFail(ex: Throwable) = ValidationError(ex.getMessage, UnknownError).failNel
 }
