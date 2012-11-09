@@ -65,6 +65,7 @@ object TodoData extends Logging with CommandHandler {
   private def add(todo: Todo): ModelValidation[Todo] = {
     allCatch.withApply(errorFail) {
       all ::= todo
+      all = all.sort((e1, e2) => (e1.id < e2.id))
       todo.successNel
     }
   }
