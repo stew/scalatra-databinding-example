@@ -29,6 +29,7 @@ object TodoData extends Logging with CommandHandler {
       Todo(2, "Wax the floor"),
       Todo(3, "Scrub the rug"))
 
+  /** Returns the number of Todos which are not yet Todone. **/
   def remaining = {
     all.filterNot(_.done == true).length
   }
