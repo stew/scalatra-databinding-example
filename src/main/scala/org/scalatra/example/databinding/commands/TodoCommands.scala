@@ -1,8 +1,12 @@
 package org.scalatra.example.databinding.commands
 
-import org.scalatra.databinding._
+// the model code from this application
 import org.scalatra.example.databinding.models._
 
+// the Scalatra databinding handlers
+import org.scalatra.databinding._
+
+// JSON-handling code
 import org.scalatra.json._
 import org.json4s.{DefaultFormats, Formats}
 
