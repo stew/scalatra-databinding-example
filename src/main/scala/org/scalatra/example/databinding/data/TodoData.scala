@@ -44,11 +44,13 @@ object TodoData extends Logging with CommandHandler {
    * you want the command to do. When it gets to that point, it's already 
    * successfully validated.
    */
-  def handle: Handler  = {
+  protected def handle: Handler  = {
     case c: CreateTodoCommand => 
       add(newTodo(~c.name.value))
   }
   
+  /** Instantiates a new `Todo` object with an auto-incremented primary key id. 
+   */
   private def newTodo(name: String) = Todo(idCounter.incrementAndGet, name)
   
   /** Adds a new Todo object to the existing list of todos.
