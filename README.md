@@ -3,7 +3,7 @@
 ## Build & Run ##
 
 ```sh
-$ cd $name__snake$
+$ cd scalatra-databinding-example
 $ ./sbt
 > container:start
 > browse
