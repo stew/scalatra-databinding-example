@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 object TodoData extends Logging with CommandHandler {
 
+  /** A counter variable to fake out auto-incrementing keys for us **/
   val idCounter = new AtomicInteger(3)
 
   /** Some fake todos data so we can simulate retrievals. */
