@@ -10,7 +10,7 @@ import org.scalatra.databinding._
 import org.scalatra.json._
 import org.json4s.{DefaultFormats, Formats}
 
-class TodosBinding[T](b: FieldDescriptor[T]) {
+class TodosStringValidations(b: FieldDescriptor[String]) {
 
   def startsWithCap(message: String = "%s must start with a capital letter.") = b.validateWith(_ => 
     _ flatMap { Validators.startsWithCap(b.name, message).validate(_) }
@@ -21,7 +21,7 @@ class TodosBinding[T](b: FieldDescriptor[T]) {
  *  repeating the `extends ModelCommand[T]` in every command we make.
  */
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with JsonCommand {
-  implicit def todoValidators[T](b: FieldDescriptor[T]) = new TodosBinding[T](b)
+  implicit def todoStringValidators(b: FieldDescriptor[String]) = new TodosStringValidations(b)
 }
 
 /** A command to validate and create Todo objects. */
