@@ -13,7 +13,7 @@ import org.json4s.{DefaultFormats, Formats}
 class TodosStringValidations(b: FieldDescriptor[String]) {
 
   def startsWithCap(message: String = "%s must start with a capital letter.") = b.validateWith(_ => 
-    _ flatMap { Validators.startsWithCap(b.name, message).validate(_) }
+    _ flatMap { new PredicateValidator[String](b.name, """^[A-Z,0-9]""".r.findFirstIn(_).isDefined, message).validate(_) }
   )
 }
 
