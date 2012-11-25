@@ -3,6 +3,9 @@ package org.scalatra.example.databinding.commands
 // the model code from this application
 import org.scalatra.example.databinding.models._
 
+import org.scalatra.validation.Validators.{PredicateValidator, Validator}
+
+
 // the Scalatra databinding handlers
 import org.scalatra.databinding._
 
