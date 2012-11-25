@@ -21,6 +21,6 @@ class CreateTodoCommand extends TodosCommand[Todo] {
   // add json format handling so the command can do automatic conversions.
   protected implicit val jsonFormats = DefaultFormats
 
-  val name: Field[String] = asType[String]("name").notBlank.minLength(3) 
+  val name: Field[String] = asType[String]("name").notBlank.minLength(3).startsWithCap
 
 }
