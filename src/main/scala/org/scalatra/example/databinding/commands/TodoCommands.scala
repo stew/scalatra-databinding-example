@@ -3,18 +3,22 @@ package org.scalatra.example.databinding.commands
 // the model code from this application
 import org.scalatra.example.databinding.models._
 
+// the Scalatra validator base code
 import org.scalatra.validation.Validators.{PredicateValidator, Validator}
-
 
 // the Scalatra databinding handlers
 import org.scalatra.databinding._
 
-// JSON-handling code
+// Scalatra's JSON-handling code
 import org.scalatra.json._
 import org.json4s.{DefaultFormats, Formats}
 
+/**
+ * A class to keep our custom String validations in.
+ */
 class TodosStringValidations(b: FieldDescriptor[String]) {
 
+  // define a validation which we can apply to a [Field]
   def startsWithCap(message: String = "%s must start with a capital letter.") = b.validateWith(_ => 
     _ flatMap { new PredicateValidator[String](b.name, """^[A-Z,0-9]""".r.findFirstIn(_).isDefined, message).validate(_) }
   )
@@ -25,7 +29,11 @@ class TodosStringValidations(b: FieldDescriptor[String]) {
  */
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with JsonCommand {
   
-  // Pimp the FieldDescriptor class with our TodosStringValidations
+  /**
+   * Pimp the [org.scalatra.databinding.FieldDescriptor] class with our [TodosStringValidations]
+   * 
+   * This adds the validation to the binding for the FieldDescriptor's b.validateWith function.
+   */
   implicit def todoStringValidators(b: FieldDescriptor[String]) = new TodosStringValidations(b)
 }
 
@@ -35,6 +43,7 @@ class CreateTodoCommand extends TodosCommand[Todo] {
   // add json format handling so the command can do automatic conversions.
   protected implicit val jsonFormats = DefaultFormats
 
+  // the validation conditions on the name field.
   val name: Field[String] = asType[String]("name").notBlank.minLength(3).startsWithCap()
   
 }
