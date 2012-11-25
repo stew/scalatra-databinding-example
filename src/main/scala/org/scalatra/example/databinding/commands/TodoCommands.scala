@@ -24,6 +24,8 @@ class TodosStringValidations(b: FieldDescriptor[String]) {
  *  repeating the `extends ModelCommand[T]` in every command we make.
  */
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with JsonCommand {
+  
+  // Pimp the FieldDescriptor class with our TodosStringValidations
   implicit def todoStringValidators(b: FieldDescriptor[String]) = new TodosStringValidations(b)
 }
 
