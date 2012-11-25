@@ -15,6 +15,9 @@ import org.json4s.{DefaultFormats, Formats}
 
 /**
  * A class to keep our custom String validations in.
+ * 
+ * Note that it takes a FieldDescriptor[String] binding as a parameter.
+ * This is so that we can pimp the FieldDescriptor. 
  */
 class TodosStringValidations(b: FieldDescriptor[String]) {
 
