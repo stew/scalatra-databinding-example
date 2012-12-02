@@ -1,13 +1,13 @@
-package org.scalatra.example.databinding.data
+package org.scalatra.example.commands.data
 
-import org.scalatra.example.databinding.models._
-import org.scalatra.example.databinding.commands._
-import org.scalatra.example.databinding.utils.Logging
+import org.scalatra.example.commands.models._
+import org.scalatra.example.commands.commandsupport._
+import org.scalatra.example.commands.utils.Logging
 import scalaz._
 import Scalaz._
 import scala.util.control.Exception._
 import org.scalatra.validation._
-import org.scalatra.databinding._
+import org.scalatra.commands._
 import java.util.concurrent.atomic.AtomicInteger
 
 /** A fake datastore which keeps Todo objects in RAM.

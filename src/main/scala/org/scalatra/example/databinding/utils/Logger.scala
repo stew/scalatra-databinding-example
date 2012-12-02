@@ -1,4 +1,4 @@
-package org.scalatra.example.databinding
+package org.scalatra.example.commands
 package utils
 
 import grizzled.slf4j.Logger

@@ -1,4 +1,4 @@
-package org.scalatra.example.databinding
+package org.scalatra.example.commands
 
 import org.scalatra.test.specs2._
 

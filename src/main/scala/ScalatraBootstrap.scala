@@ -1,4 +1,4 @@
-import org.scalatra.example.databinding._
+import org.scalatra.example.commands._
 import org.scalatra._
 import javax.servlet.ServletContext
 

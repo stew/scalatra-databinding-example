@@ -1,4 +1,4 @@
-package org.scalatra.example.databinding
+package org.scalatra.example.commands
 
 import org.scalatra._
 import scalate.ScalateSupport
@@ -7,17 +7,17 @@ import scalate.ScalateSupport
 import json._
 import org.json4s.{DefaultFormats, Formats}
 
-// Command support
-import databinding._
+// Scalatra's command support
+import org.scalatra.commands._
 
 // Our models
 import models._
 
-// Data
+// Our data
 import data._
 
-// Commands
-import commands._
+// Our commands
+import commandsupport._
 
 // Logger
 import utils._

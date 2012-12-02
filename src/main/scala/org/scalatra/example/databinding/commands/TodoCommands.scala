@@ -1,13 +1,13 @@
-package org.scalatra.example.databinding.commands
+package org.scalatra.example.commands.commandsupport
 
 // the model code from this application
-import org.scalatra.example.databinding.models._
+import org.scalatra.example.commands.models._
 
 // the Scalatra validator base code
 import org.scalatra.validation.Validators.{PredicateValidator, Validator}
 
-// the Scalatra databinding handlers
-import org.scalatra.databinding._
+// the Scalatra command handlers
+import org.scalatra.commands._
 
 // Scalatra's JSON-handling code
 import org.scalatra.json._
@@ -33,7 +33,7 @@ class TodosStringValidations(b: FieldDescriptor[String]) {
 abstract class TodosCommand[S](implicit mf: Manifest[S]) extends ModelCommand[S] with JsonCommand {
   
   /**
-   * Pimp the [org.scalatra.databinding.FieldDescriptor] class with our [TodosStringValidations]
+   * Pimp the [org.scalatra.commands.FieldDescriptor] class with our [TodosStringValidations]
    * 
    * This adds the validation to the binding for the FieldDescriptor's b.validateWith function.
    */

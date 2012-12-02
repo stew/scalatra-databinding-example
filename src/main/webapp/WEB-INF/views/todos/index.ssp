@@ -1,4 +1,4 @@
-<% import org.scalatra.example.databinding.models.Todo %>
+<% import org.scalatra.example.commands.models.Todo %>
 <%@ val todos: List[Todo] %>
 <%@ val remaining: Integer %>
 
