@@ -55,7 +55,7 @@ object TodoData extends Logging with CommandHandler {
   
   /** Adds a new Todo object to the existing list of todos.
    * 
-   * The method returns a ModelValidation[Todo], which is carried around in the
+   * The method returns a FieldValidation[Todo], which is carried around in the
    * todo.successNel. Think of "successNel" as being like a two part variable 
    * name. The result is either 
    * Success[Model] or Failure[NonEmptyList[ValdationError]]. So you're getting
@@ -66,7 +66,7 @@ object TodoData extends Logging with CommandHandler {
    * will be called, due to the allCatch.withApply (which is equivalent to a
    * try {} catch {} block. 
    */
-  private def add(todo: Todo): ModelValidation[Todo] = {
+  private def add(todo: Todo): FieldValidation[Todo] = {
     allCatch.withApply(errorFail) {
       all ::= todo
       all = all.sort((e1, e2) => (e1.id < e2.id))
